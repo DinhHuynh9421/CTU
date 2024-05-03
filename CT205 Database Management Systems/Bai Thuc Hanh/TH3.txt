@@ -1,0 +1,123 @@
+--Bai Thuc Hanh 3: Hàm thủ tục
+--cau 1
+CREATE OR REPLACE PROCEDURE Del_Emp (p_EmpNo NUMBER) IS 
+BEGIN 
+         DELETE FROM scott.emp WHERE empno = p_EmpNo; 
+         COMMIT; 
+END;
+
+SELECT * FROM Scott.Emp WHERE empno = 7654;
+
+EXECUTE Del_Emp(7654);
+
+SELECT * FROM Scott.Emp WHERE empno = 7654;
+
+-- cau 2
+CREATE OR REPLACE FUNCTION get_dept_salary(dno number) RETURN 
+NUMBER 
+IS 
+         all_sal NUMBER; 
+BEGIN 
+            all_sal := 0; 
+            FOR emp_sal IN 
+            (SELECT SAL FROM scott.EMP WHERE DEPTNO = dno 
+              AND SAL IS NOT NULL) 
+      LOOP 
+           all_sal := all_sal + emp_sal.sal; 
+       END LOOP; 
+       RETURN all_sal; 
+END get_dept_salary;
+
+SELECT get_dept_salary(30) AS Tsal FROM DUAL;
+
+DECLARE 
+         result NUMBER; 
+BEGIN
+          result := get_dept_salary(30); 
+            dbms_output.put_line(result); 
+END;
+
+--cau 3
+Create or replace procedure MucLuong (p_jobid jobs.job_id%TYPE, 
+          min_lg OUT jobs.min_salary%type, 
+          max_lg OUT jobs.max_salary%type) IS 
+begin 
+   select min_salary, max_salary into min_lg, max_lg 
+   from jobs 
+   where JOB_ID = p_jobid; 
+ 
+   exception 
+       when no_data_found then 
+           dbms_output.put_line (‘Ma cong viec ' || p_jobid || ‘ khong tim thay’); 
+        when others then 
+           dbms_output.put_line ('Khong biet loi gi'); 
+end;
+
+set serveroutput on; 
+declare 
+ min1 jobs.min_salary%type; 
+ max1 jobs.max_salary%type; 
+begin 
+ MucLuong(‘&Nhap_ma_cong_viec’,min1, max1); 
+ dbms_output.put_line ('Min = '|| to_char(min1) || ' Max = ' 
+ || to_char(max1)); 
+end;
+
+-- Bai tap tu lam
+--Cau 1
+--1.1
+set serveroutput on;
+create or replace
+procedure get_Name_Month(m in date) is
+    t varchar2(30); n number;
+    begin
+    n  :=  extract (month from m);
+         case n
+          when 1 then t := 'Thang mot';
+          when 2 then t := 'Thang hai';
+          when 3 then t := 'Thang ba';
+          when 4 then t := 'Thang bon';
+          when 5 then t := 'Thang nam';
+          when 6 then t := 'Thang sau';
+          when 7 then t := 'Thang bay';
+          when 8 then t := 'Thang tam';
+          when 9 then t := 'Thang chin';
+          when 10 then t := 'Thang muoi';
+          when 11 then t := 'Thang muoi mot';
+          when 12 then t := 'Thang muoi hai';
+          else t := 'Khong xac dinh';
+          end case;
+          dbms_output.put_line(t);
+       end;
+
+       execute GET_NAME_MONTH(T0_DATE('2003/07/09',  'YYYY/mm/dd'));
+
+
+--2.1
+create or replace
+procedure Truluong(v_empno number,v_percent number)
+is
+begin
+update scott.emp set comm = comm - comm*v_percent where empno = v_empno; end if;
+end;
+
+------------------
+--2.2
+create or replace
+function MaxSal return number
+  is
+  v_sal number;
+  begin
+  select empno into v_sal from scott.emp where sal = (select max(sal) from scott.emp);
+  return v_sal;
+  end;
+
+
+
+
+
+
+
+
+
+
