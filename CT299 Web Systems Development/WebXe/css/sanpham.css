@@ -1,0 +1,16 @@
+main .col-4 {
+    padding: 5px;
+    text-align: center;
+}
+.camry{
+    text-decoration: none;
+}
+main .row{
+    padding: 5px;
+}
+ main img{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.thongtin{
+    margin-top: 15px;
+}

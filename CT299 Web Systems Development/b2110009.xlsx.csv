@@ -1,0 +1,13 @@
+"madon";"msp";"soluong";"dongia"
+"1";"3";"5";"20000"
+"2";"4";"5";"30000"
+"3";"1";"6";"50000"
+"4";"5";"7";"20000"
+"5";"6";"4";"50000"
+"6";"2";"5";"20000"
+"7";"1";"5";"20000"
+"8";"6";"5";"20000"
+"9";"7";"5";"20000"
+"10";"7";"5";"20000"
+"madon";"manv";"matrangthai";"noidung";"ngaytao"
+<div class="alert alert-danger" role="alert"><img src="themes/dot.gif" title="" alt="" class="icon ic_s_error"> TypeError: PhpMyAdmin\Encoding::convertString(): Return value must be of type string, bool returned</div></body></html>

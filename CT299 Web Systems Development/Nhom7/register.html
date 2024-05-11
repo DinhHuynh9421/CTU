@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/menu-toyota.css">
+    <link rel="shortcut icon" href="img/favicon-2.png" type="image/x-icon">
+
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+  <header class="container">
+    <div class="login">
+        <a href="login.html">Login</a>
+    </div>
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <img src="img/logo-toyota.jpg" alt="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Sản phẩm
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="Sedan.html">Sedan</a></li>
+                  <li><a class="dropdown-item" href="SUV.html">SUV</a></li>
+                  <li><a class="dropdown-item" href="HatchBack.html">Hatchback</a></li>                    </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tintuc.html">Tin tức</a>
+              </li>
+            
+              <li class="nav-item">
+                <a class="nav-link" href="DichVu.html">Dịch vụ</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lienhe.html">Liên hệ</a>
+              </li>
+            
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Nhập nội dung tìm..." aria-label="Search" id="key">
+              <button class="btn btn-outline-success" type="button" onclick="tk()">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+        
+  </header>
+    
+    <main class="container">
+      <br>
+        <div class="row" style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;padding: 15px;">
+            <div class="col-6">
+                <h2>Đăng ký</h2>
+                <form name="form" method="post" action="#" onsubmit="return dangky()">
+                    <!-- Username input -->
+                    <div class="form-outline mb-4">
+                      <input type="text" id="hten" class="form-control" placeholder="Vui lòng nhập họ tên..." />
+                      <label class="form-label" for="hten">Tên tài khoản</label>
+                    </div>
+                  
+                  
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                      <input type="email" id="email" class="form-control" placeholder="Vui lòng nhập email..." />
+                      <label class="form-label" for="email">Email</label>
+                    </div>
+                  
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                      <input type="password" id="pw" class="form-control" placeholder="Vui lòng nhập mật khẩu..." />
+                      <label class="form-label" for="pw">Mật khẩu</label>
+                    </div>
+                  
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block mb-4">Đăng ký</button>
+                  
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                      <p>hoặc Đăng ký với:</p>
+                      <span class="icon-register" style="font-size: 30px;">
+                        <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                        <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                    </span>
+                    </div>
+                  </form>
+            </div>
+            <div class="col-6">
+                <img src="img/supra-background.avif" style="width: 100%;height: 100%;" alt="">
+            </div>
+        </div>
+       
+        <hr>
+    </main>
+    <footer class="container">
+      <div class="row" style="padding: 5px;">
+          <div class="col-6" style="text-align: center;">
+          <h5>ĐẠI DIỆN BÁN HÀNG</h5>
+              <b>Mr.Nguyen Hoang Gia</b> <br>
+          <p>TƯ VẤN MUA XE: <b>038.2222.431</b></p>
+          <p>HỖ TRỢ DỊCH VỤ: <b>038.2323.512</b></p>
+          <span class="icon" >
+              <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+              <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+              <a href="#"><i class="fa-regular fa-envelope"></i></a>
+          </span>
+          <p>Địa chỉ: 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ</p>
+          <p>&copy Đã được đăng ký bản quyền bởi Toyota Ninh Kiều</p>
+
+          </div>
+          <div class="col-6" style="text-align: center;">
+            <form method="post" action="#" onsubmit = "return uudai(this)">
+              <h5>ĐĂNG KÝ NHẬN ƯU ĐÃI</h5>
+              <p>Quý khách vui lòng điền đầy đủ thông tin bên dưới để được cập nhật các chương trình khuyến mại SỚM NHẤT & TỐT NHẤT.                </p>
+              <input class="form-control" style="border-radius: 10px;background-color: #F0F8FF;" type="text" placeholder="Vui lòng nhập họ và tên" id="hten"><br>
+      
+              <input class="form-control" style="border-radius: 10px;background-color: #F0F8FF;" type="text" placeholder="Số điện thoại liên hệ" id="sdt"><br>
+              <button class="form-control" style="width: 50%;background-color: #F0F8FF;margin: auto;" type="submit">Đăng ký ngay</button>
+            </form>
+          </div>
+          </div>
+        
+  </footer>
+  <script src ="./js/script.js"></script>
+</body>
+</html>

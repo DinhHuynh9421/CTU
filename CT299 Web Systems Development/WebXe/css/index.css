@@ -1,0 +1,22 @@
+.cacloaisanpham img{
+    width: 300px;
+}
+header,main{
+    margin-bottom: 5px;
+}
+
+.cacloaisanpham a{
+    text-decoration: none;
+   border: 5px solid transparent;
+   border-radius: 5px;
+   
+}
+.cacloaisanpham a:hover{
+    background-color: green;
+    color: #fff;
+}
+.cacloaisanpham .col-4{
+    text-align: center;
+}
+
+

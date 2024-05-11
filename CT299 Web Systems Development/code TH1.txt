@@ -1,0 +1,88 @@
+cau 17
+SELECT ddh.madon, ddh.ngaydat, SUM(ctdh.soluong * sp.dongia) AS tongtien 
+FROM dondathang ddh 
+JOIN chitietddh ctdh ON ddh.madon = ctdh.madon 
+JOIN sanpham sp ON ctdh.msp = sp.msp 
+GROUP by ddh.madon, ddh.ngaydat;
+
+cau18
+SELECT kh.makhach, kh.hoten, SUM(ctdh.soluong * sp.dongia) AS tongtien
+FROM khachhang kh
+JOIN dondathang ddh ON kh.makhach = ddh.makhach
+JOIN chitietddh ctdh ON ddh.madon = ctdh.madon
+JOIN sanpham sp ON ctdh.msp = sp.msp
+GROUP BY kh.makhach, kh.hoten
+ORDER BY tongtien DESC
+LIMIT 1;
+
+cau19
+SELECT sp.msp, sp.tensp, SUM(ctdh.soluong) AS tongluong 
+FROM sanpham sp 
+JOIN chitietddh ctdh ON sp.msp = ctdh.msp
+ GROUP BY sp.msp, sp.tensp 
+ORDER BY tongluong DESC LIMIT 1;
+
+cau20
+SELECT sp.msp, sp.tensp
+FROM sanpham sp 
+WHERE sp.ngaythem >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY sp.ngaythem ASC;
+
+cau21:
+SELECT (SELECT COUNT(*) FROM khachhang) AS tongkhachhang, (SELECT COUNT(*) 
+FROM dondathang), (SELECT COUNT(*) FROM dondathang JOIN chitiettrangthai 
+ON dondathang.madon = chitiettrangthai.madon WHERE chitiettrangthai.matrangthai = 2) 
+AS tongdonhangdathanhtoan, (SELECT COUNT(*) FROM dondathang 
+JOIN chitiettrangthai ON dondathang.madon = chitiettrangthai.madon 
+WHERE chitiettrangthai.matrangthai = 1) AS tongdonhangchuaduyet, (SELECT COUNT(DISTINCT chitietddh.msp) FROM chitietddh) AS tongsohoadon, 
+(SELECT SUM(chitietddh.soluong*sanpham.dongia) FROM chitietddh 
+JOIN sanpham ON chitietddh.msp) AS tonggiatridonhang;
+
+cau22
+SELECT khachhang.makhach, khachhang.hoten, COUNT(*) AS soluonghuydonnhieunhat FROM khachhang JOIN dondathang 
+ON khachhang.makhach = dondathang.makhach JOIN chitiettrangthai ON chitiettrangthai.madon = dondathang.madon
+WHERE chitiettrangthai.matrangthai = 3 GROUP BY khachhang.makhach, khachhang.hoten ORDER BY soluonghuydonnhieunhat 
+DESC
+LIMIT 1;
+
+cau23
+SELECT khachhang.makhach, khachhang.hoten, COUNT(*) AS solanthanhtoanthanhcong FROM khachhang JOIN dondathang 
+ON khachhang.makhach = dondathang.makhach 
+JOIN chitiettrangthai ON dondathang.madon = chitiettrangthai.madon WHERE chitiettrangthai.matrangthai = 1 GROUP BY
+khachhang.makhach, khachhang.hoten
+ORDER BY solanthanhtoanthanhcong 
+DESC
+LIMIT 1; ??1,3,45..
+
+cau24:
+SELECT trangthai.matrangthai, trangthai.tentrangthai, COUNT(*) soluongdon 
+FROM trangthai 
+JOIN chitiettrangthai ON chitiettrangthai.matrangthai = trangthai.matrangthai
+GROUP BY trangthai.matrangthai, trangthai.tentrangthai;
+
+cau25:
+SELECT YEAR(chitiettrangthai.ngaytao) AS nam, QUARTER(chitiettrangthai.ngaytao) AS quy,
+COUNT(DISTINCT dondathang.madon) AS tongdondathang, COUNT(DISTINCT chitietddh.msp) AS tongmathangdadat,
+SUM(chitietddh.soluong * sanpham.dongia) AS tonggiatridondathang FROM chitiettrangthai 
+JOIN dondathang ON chitiettrangthai.madon = dondathang.madon JOIN chitietddh ON dondathang.madon = chitietddh.madon
+JOIN sanpham ON chitietddh.msp = sanpham.msp WHERE chitiettrangthai.matrangthai = 2 GROUP BY nam, quy ORDER BY nam, quy;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.js"></script>
+    <link rel="stylesheet" href="css/menu-toyota.css">
+</head>
+<body>
+    <style>
+        body{
+    color: #6F8BA4;
+    margin-top:20px;
+}
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+/* About Me 
+---------------------*/
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h6 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h6 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 18px;
+  max-width: 450px;
+}
+.about-text p mark {
+  font-weight: 600;
+  color: #20247b;
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #20247b;
+  font-weight: 600;
+  width: 88px;
+  margin: 0;
+  position: relative;
+}
+.about-list label:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 11px;
+  width: 1px;
+  height: 12px;
+  background: #20247b;
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+  margin: auto;
+  opacity: 0.5;
+}
+.about-list p {
+  margin: 0;
+  font-size: 15px;
+}
+
+@media (max-width: 991px) {
+  .about-avatar {
+    margin-top: 30px;
+  }
+}
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
+mark {
+    background-image: linear-gradient(rgba(252, 83, 86, 0.6), rgba(252, 83, 86, 0.6));
+    background-size: 100% 3px;
+    background-repeat: no-repeat;
+    background-position: 0 bottom;
+    background-color: transparent;
+    padding: 0;
+    color: currentColor;
+}
+.theme-color {
+    color: #fc5356;
+}
+.dark-color {
+    color: #20247b;
+}
+
+</style>
+     <header class="container">
+        <div class="login">
+            <a href="login.html">Login</a>
+        </div>
+        <nav class="navbar navbar-expand-sm">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">
+                <img src="img/logo-toyota.jpg" alt="">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Trang chủ</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sản phẩm
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="Sedan.html">Sedan</a></li>
+                      <li><a class="dropdown-item" href="SUV.html">SUV</a></li>
+                      <li><a class="dropdown-item" href="HatchBack.html">Hatchback</a></li>                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="tintuc.html">Tin tức</a>
+                  </li>
+                
+                  <li class="nav-item">
+                    <a class="nav-link" href="DichVu.html">Dịch vụ</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="lienhe.html">Liên hệ</a>
+                  </li>
+                
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="search" placeholder="Nhập nội dung tìm..." aria-label="Search" id="key">
+                  <button class="btn btn-outline-success" type="button" onclick="tk()">Search</button>
+                </form>
+                
+            </div>
+          </nav>
+          
+    </header>
+    <main class="container">
+      <h1></h1>
+        <section class="section about-section gray-bg" id="about">
+            <div class="container" style="box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;padding: 15px;">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-lg-6">
+                        <div class="about-text go-to">
+                            <h3 class="dark-color">Thông tin người dùng</h3>
+                            <div class="row about-list">
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>Họ tên</label>
+                                        <p>Nguyễn Hoàng Gia</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Ngày sinh</label>
+                                        <p>28/02/2003</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Quốc tịch</label>
+                                        <p>Việt Nam</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Địa chỉ</label>
+                                        <p>Châu Thành, An Giang</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <label>E-mail</label>
+                                        <p>example@gmail.com</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Phone</label>
+                                        <p>820-885-3321</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Skype</label>
+                                        <p>skype.0404</p>
+                                    </div>
+                                    <div class="media">
+                                        <label>Freelance</label>
+                                        <p>Available</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-avatar">
+                            <img src="img/profile-logo3.png" style="width: 100%;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <div class="row" style="padding: 5px;">
+            <div class="col-6" style="text-align: center;">
+            <h5>ĐẠI DIỆN BÁN HÀNG</h5>
+                <b>Mr.Nguyen Hoang Gia</b> <br>
+            <p>TƯ VẤN MUA XE: <b>038.2222.431</b></p>
+            <p>HỖ TRỢ DỊCH VỤ: <b>038.2323.512</b></p>
+            <span class="icon" >
+                <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                <a href="#"><i class="fa-regular fa-envelope"></i></a>
+            </span>
+            <p>Địa chỉ: 3/2, Xuân Khánh, Ninh Kiều, Cần Thơ</p>
+            <p>&copy Đã được đăng ký bản quyền bởi Toyota Ninh Kiều</p>
+
+            </div>
+            <div class="col-6" style="text-align: center;">
+              <form method="post" action="#" onsubmit = "return uudai(this)">
+                <h5>ĐĂNG KÝ NHẬN ƯU ĐÃI</h5>
+                <p>Quý khách vui lòng điền đầy đủ thông tin bên dưới để được cập nhật các chương trình khuyến mại SỚM NHẤT & TỐT NHẤT.                </p>
+                <input class="form-control" style="border-radius: 10px;background-color: #F0F8FF;" type="text" placeholder="Vui lòng nhập họ và tên" id="hten"><br>
+        
+                <input class="form-control" style="border-radius: 10px;background-color: #F0F8FF;" type="text" placeholder="Số điện thoại liên hệ" id="sdt"><br>
+                <button class="form-control" style="width: 50%;background-color: #F0F8FF;margin: auto;" type="submit">Đăng ký ngay</button>
+              </form>
+            </div>
+            </div>
+          
+    </footer>
+    <script src ="./js/script.js"></script>
+</body>
+</html>

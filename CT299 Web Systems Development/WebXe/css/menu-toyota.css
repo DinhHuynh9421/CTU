@@ -1,0 +1,40 @@
+li.nav-item:hover ,.nav-link:hover{
+    background-color: green;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.icon{
+    width: 200px;
+}
+.nav-link{
+    color: #000;
+}
+header{
+    border-bottom: 1px solid red ;
+}
+footer{
+    color: #000;
+}
+.icon i{
+    font-size: 30px;
+    color: #fff;
+}
+.login {
+    margin: 15px auto;
+    float: right;
+}
+.login a{
+    text-decoration: none;
+    color: green;
+    border: 1px solid green;
+    border-radius: 20px;
+    padding: 5px;
+
+}
+
+.login a:hover{
+    background-color: green;   
+    color: #fff;
+}
+
