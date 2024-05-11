@@ -1,0 +1,17 @@
+/*scanf 2.5 5 4.2
+Chu vi: 11.70
+Dien tich: 5.24
+Sử dụng công thức Herong để tính diện tích tam giác.
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+    float a, b, c, cv, p, s;
+    scanf("%f%f%f", &a, &b, &c);
+    cv = a + b + c;
+    p = cv/2;
+    s = sqrt(p*(p-a)*(p-b)*(p-c));
+    printf("Chu vi: %.2f", cv);
+    printf("\nDien tich: %.2f", s);
+    return 0;
+}

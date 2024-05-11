@@ -1,0 +1,9 @@
+ascII a -> A
+#include <stdio.h>
+#include <math.h>
+int main(){
+	char c;
+	scanf("%c", &c);
+	printf("%c" ,c-32);
+	return 0;
+}

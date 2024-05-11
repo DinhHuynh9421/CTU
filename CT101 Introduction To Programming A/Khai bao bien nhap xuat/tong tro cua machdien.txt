@@ -1,0 +1,13 @@
+scanf 1 2 2   -> 2.00
+scanf 10 5 6  ->   12.73
+
+#include<stdio.h>
+int main()
+{
+ int R1, R2, R3;
+ scanf("%d %d %d", &R1, &R2, &R3);
+ float Rss=(float)(R2*R3)/(R2+R3);
+ float tongtro=(float)(R1+Rss);
+ printf("%.2f",tongtro);
+ return 0; 
+}

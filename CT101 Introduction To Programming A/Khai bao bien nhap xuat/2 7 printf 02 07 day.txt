@@ -1,0 +1,9 @@
+2 7 1999 -> 02/07/1999
+#include <stdio.h>
+int main()
+{
+    int ngay, thang, nam;
+    scanf("%d%d%d", &ngay, &thang, &nam);
+    printf("%.2d/%.2d/%d", ngay, thang, nam);
+    return 0;
+}

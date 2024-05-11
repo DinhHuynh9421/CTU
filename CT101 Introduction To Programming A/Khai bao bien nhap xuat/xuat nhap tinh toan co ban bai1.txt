@@ -1,0 +1,12 @@
+//Đổi chiều dài sang m và km. Làm tròn số đến 3 số lẻ
+//scanf 1234  1234cm = 12.340m = 0.012km
+#include <stdio.h>
+#include <math.h>
+int main(){
+	int c;
+	scanf("%d" , &c);
+	float mt = (float)(c*10)/1000;
+	float kt = ((float)c/100)/1000;
+	printf("%dcm = %.3fm = %.3fkm", c, mt, kt);
+	return 0;
+}

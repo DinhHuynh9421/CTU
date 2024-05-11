@@ -1,0 +1,8 @@
+//Viết chương trình nhập vào số xe (4 chữ số). 
+Tính xem số xe này có bao nhiêu nút, hiển thị số nút ra màn hình. 
+Biết số xe có dạng abcd thì số nút = (a+b+c+d) % 10. 
+Dữ liệu đầu vào xem như hợp lệ, không cần kiểm tra.
+Một số nguyên n có 4 chữ số tương ứng 4 chữ số của biển số xe.
+Tìm số hàng đơn vị, chục, trăm và ngàn của số n, ví dụ: đơn vị = n % 10.
+
+//
