@@ -1,0 +1,128 @@
+// Stack
+//push them, pop xoa; last in first out(LIFO) =>vao sau ra truoc, first in last out(FIIO) vao truoc ra sau 
+// => all chi thuc hien o top => dau ngan xep
+
+ //   I.Cai dat Stack = dsach
+    
+	//(1)Khai bao
+#include "AListLib.c" //ds cai = mang //tu dsach dc cai dat roi, chi ro duog dan
+//hoac
+ #include "PListLib.c"//ds con tro
+ 
+ //D.Nghia kieu stack la 1 List
+ typedef List Stack; 
+ 
+ //(2) Khoi tao rong
+ void makenullListStack(Stack *pS){
+ 	makenullList(pS);
+ }
+ 
+ //(3) ktra rong? 
+ int emptyStack(Stack S){
+ 	return emptyList(S); //ngan xep trong list
+ }
+ 
+ //(4) them x vao dinh nxep
+ void push(ElementType X, Stack *pS){
+ 	insertList(X, first(*pS), pS);
+ }
+ 
+ //5 xoa x o dinh
+ void pop(Stack *pS){
+ 	deleteList(first(*pS), pS);
+ } 
+ 
+ //6 xdinh value dinh nxep
+ ElementType top(Stack S){
+ 	return retrieve(first(S), S);
+ }
+ 
+       //II.cai dat dsach = Mang // Stack co 2 truong Elements, Top_idx
+       // khac voi dsach = mang, Stack luu tu malength-1 ve top_ids => them ptu giam top & nguoc lai
+       
+//(1) Khai bao
+#define Maxlength...//do dai mang
+typedef...ElementType;//Kieu ptu nxep
+typedef struct{
+	//luu ndung cac ptu
+	ElementType Elements[Maxlength];
+	int top_idx; // luu giu chi so ptu dinh nxep 
+}Stack;
+ 
+ //2 khoi tao rong
+
+   /*void khoitao(NganXep *pS){
+       pS->Dinh = SoPhanTu;
+}*/
+
+    void makenullStack(Stack *pS){
+    	pS->top_idx = Maxlength;
+	}
+ 
+ //3 ktra(nxep rong) chi so dinh nxep == Maxlength?
+ int emptyStack(Stack S){
+ 	return S.top_idx==Maxlength;
+ }
+ 
+ //4 ktra nxep day ==0?
+ 
+int fullStack(Stack S){
+	return S.top_idx==0;
+}
+
+//5 them ptu dinh nxep
+void push(ElementType X, Stack *pS){
+	if(fullStack(*pS))
+	   printf("Ngan xep day!");
+	else 
+	   pS->Elements[--pS->top_idx] ==X;
+}
+
+//6 xoa ptu dinh
+void pop(Stack *pS){
+	if(emptyStack(*pS))
+	   printf("Ngan xep rong!");
+	else 
+	   pS->top_idx++;
+}
+
+//7 return ptu dinh nxep
+ElementType top(Stack S){
+	if(emptyStack(S))
+	   printf("Nxep rong");
+    else return S.Elements[S.top_idx];
+}  
+
+//
+ 
+ 
+ //II. Queue - Hang doi
+ 
+ makenullQueue(Q) // tao hang Q rong
+ 
+ emptyQueue(Q) //ktra hang rong?
+ 
+ fullQueue(Q) //ktra hang day
+ 
+enQueue(X,Q) // them ptu X vao cuoi hang Q
+
+deQueue(Q) //Xoa ptu dau hang Q
+
+front(Q) // return value ptu dau hang Q
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

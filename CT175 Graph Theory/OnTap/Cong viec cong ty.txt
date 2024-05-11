@@ -1,0 +1,46 @@
+#Công ty ABC có một dự án gồm n công việc (giả sử được đánh số từ 1 đến n). Một công việc thứ j có thể phụ thuộc vào công việc khác, công việc thứ i. Khi đó,
+ công việc thứ i hoàn thành thì mới thực hiện được công việc thứ j.
+
+#Hãy viết chương trình in ra màn hình số lượng công việc phụ thuộc của một công việc x nào đó.\
+
+#include <stdio.h>
+#define MAX_N 100
+typedef struct {
+    int A[MAX_N][MAX_N];
+    int n, m;
+}Graph;
+
+void init_graph(Graph *G, int n) {
+    G->n=n;
+    G->m=0;
+    int u, v;
+    for (u=1;u<=n;u++)
+        for (v=1;v<=n;v++)
+            G->A[u][v]=0;
+}
+
+void add_edge(Graph *G, int u, int v) {
+    G->A[u][v]=1;
+    G->m++;
+}
+
+int main() {
+    Graph G;
+	int n, m, u, v, e;
+	scanf("%d%d", &n, &m);
+	init_graph(&G, n);
+	
+	for (e = 0; e < m; e++) {
+		scanf("%d%d", &u, &v);
+		add_edge(&G, u, v);
+	}
+	
+	int x;
+	scanf("%d",&x);
+	int count = 0;
+	for (u=1;u<=G.n;u++)
+	    if (G.A[u][x] > 0)
+	        count++;
+	printf("%d:%d", x, count);
+	return 0;
+}

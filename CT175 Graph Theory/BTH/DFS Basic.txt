@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXN 100
+int check[MAXN];
+typedef int element_type;
+typedef struct {
+	int n, m;
+	element_type A [MAXN][MAXN];
+}Graph;
+
+void init_graph(Graph *pG, int n){
+	pG->n = n;
+	pG->m = 0;
+}
+
+void add_edge(Graph *pG, int u, int v){
+	pG->A[u][v] = 1;
+	pG->A[v][u]	= 1;
+	pG->m ++;
+}
+//------------------------------------------------------------//
+struct Node{
+	element_type Element;
+	struct Node *Next;
+};
+
+typedef struct{
+	struct Node *font, *rear;
+}Queue;
+
+void makenullQueue(Queue *pQ){
+	struct Node *P;
+	P = (struct Node*)malloc(sizeof(struct Node));
+	P->Next = NULL;
+	pQ->font = P;
+	pQ->rear = P;
+}
+
+element_type front(Queue Q){
+	return Q.font->Next->Element;
+}
+
+void enQueue(Queue *pQ, int x){
+	pQ->rear->Next = (struct Node*)malloc(sizeof(struct Node));
+	pQ->rear->Next->Element = x;
+	pQ->rear = pQ->rear->Next;
+}
+
+void deQueue(Queue *pQ){
+	struct Node *Temp = pQ->font;
+	pQ->font = Temp->Next;
+	free(Temp);
+}
+
+int empty(Queue Q){
+	return (Q.font == Q.rear);	
+}
+
+
+void BFS(Graph *pG, int start){
+	Queue Q;
+	makenullQueue(&Q);
+	enQueue(&Q, start);
+	while (!empty(Q)){
+		int i;
+		int vertex = front(Q);
+			deQueue(&Q);
+			if (!check[vertex]){
+				printf(" %d ", vertex);
+				check[vertex] = 1;
+				for (i = 1; i <= pG->n; i++){
+					if (pG->A[vertex][i] > 0 && !check[i])
+						enQueue(&Q, i);
+				}
+			}
+	}
+}
+
+int main(){
+	freopen("D:/dothi_1.txt", "r", stdin);
+	Graph G;
+	int n, m, u, v, e;
+	scanf("%d%d", &n, &m);
+	init_graph(&G, n);
+	
+	for (e = 0; e < m; e++) {
+		scanf("%d%d", &u, &v);
+		add_edge(&G, u, v);
+	}
+
+	for (e = 1; e <= G.n; e++) check[e] = 0;
+	printf("Duyet BFS: \n");
+	for (e = 1; e <= G.n; e++) {
+		if (!check[e]) {
+			BFS(&G, e);
+			printf("\n");
+		}
+	}
+}

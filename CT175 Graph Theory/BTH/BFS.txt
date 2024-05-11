@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXN 100
+int check[MAXN];
+typedef int element_type;
+typedef struct {
+	int n, m;
+	element_type A [MAXN][MAXN];
+}Graph;
+
+void init_graph(Graph *pG, int n){
+	pG->n = n;
+	pG->m = 0;
+}
+
+void add_edge(Graph *pG, int u, int v){
+	pG->A[u][v] = 1;
+	pG->A[v][u]	= 1;
+	pG->m ++;
+}
+//-------------------------------------------------------//
+struct Node{
+	element_type	Element;
+	struct Node*	Next;
+};
+typedef struct Node*	Stack;
+
+void makenullStack(Stack *pS) {
+	(*pS) = (struct Node*)malloc(sizeof(struct Node));
+	(*pS)->Next = NULL;
+}
+
+element_type Top(Stack S) {
+	return S->Next->Element;
+}
+
+void Push(Stack *pS, int x) {
+	Stack Temp;
+	makenullStack(&Temp);
+	Temp->Element = x;
+	Temp->Next = (*pS)->Next;
+	(*pS)->Next = Temp;
+}
+
+void Pop(Stack *pS) {
+	Stack Temp = (*pS)->Next;
+	(*pS)->Next = Temp->Next;
+	free(Temp);
+}
+
+int Empty(Stack S) {
+	return S->Next == NULL;
+}
+
+void DFS(Graph *pG, int Start) {
+	Stack S;
+	makenullStack(&S);
+	Push(&S, Start);
+	while (!Empty(S)) {
+		int vertex = Top(S);
+			Pop(&S);
+			if (!check[vertex]) {
+				printf(" %d ", vertex);
+				check[vertex] = 1;
+			}
+		int i;
+			for (i = 1; i <= pG->n; i ++) {
+				if (pG->A[vertex][i] > 0 && !check[i]) {
+					Push(&S, i);
+				}
+			}
+		 
+		
+	}
+}
+
+int main(){
+	freopen("D:/dothi_1.txt", "r", stdin);
+	Graph G;
+	int n, m, u, v, e;
+	scanf("%d%d", &n, &m);
+	init_graph(&G, n);
+	
+	for (e = 0; e < m; e++) {
+		scanf("%d%d", &u, &v);
+		add_edge(&G, u, v);
+	}
+
+	for (e = 1; e <= G.n; e++) check[e] = 0;
+	printf("Duyet DFS: \n");
+	for (e = 1; e <= G.n; e++) {
+		if (!check[e]) {
+			DFS(&G, e);
+			printf("\n");
+		}
+	}
+}

@@ -1,0 +1,153 @@
+//DS lien ket
+// nam roi rac, noi voi nhau bang = node , 2phan data,node
+// header => dau danh sach, node an => sau vi tri cuoi cung luu NULL value dac biet
+
+//(1) Khai bao
+typedef....ElementType; //...=>Sinh vien
+typedef struct Node{
+	ElementType Element;//Element => data cac ptu
+	struct Node* Next; //Next con tro Node luu tru dia chi nut ke tiep // D/nghia theo de qui
+};
+typedef struct Node* Position;
+typedef Position List;
+
+//(2) Khoi tao ds rong
+void makenullList(List *pL){
+	(*pL) =(struct Node*)malloc(sizeof(struct Node)); 
+	(*pL) ->Next = NULL; //dat truong Next = NULL
+}
+
+//(3) ktra ds rong?
+int emptyList(List L){
+	return (L->Next==NULL);
+}
+
+//(4) vtri dau tien
+Position first(List L){
+	return L; //L always la vtri dau tien => mo hinh
+}
+
+//5 vtri sau vtri cuoi cung     
+Position endList(List L){
+	Position P=first(L); //or P=L;
+	while(P->Next!=NULL) //lap ket thuc khi P->Next=NULL
+	  P=P->Next; //tuc la di chuyen ve sau, bat dau L 11'00
+	  return P;
+}// do phuc tap O(n)
+
+//so sanh cai = mang 
+Position endList(List L){
+	return L.Last+1;
+} //O(1)
+
+//6 vtri sau vtri cuoi cung => P->next
+Position next(Position P, List L){
+	if(P->Next!=NULL)
+	  return P->Next;
+}
+
+Position Next(Position P, List L){ //5
+	return P+1;  //sau P
+}
+
+//7 truoc p
+Position previous(Position P, List L){ // Q=L start, Q -> khi nao truoc P => Q
+	Position P = L;
+	while(Q->Next!=P) Q=Q->Next;
+	return Q;
+}
+
+// 8 value vtri P
+ElementType retrieve(Position P, List L){
+	if(P->Next!=NULL) //if P la vi tri
+	 return P->Next->Element; // P->Next => node, cau truc 2 phan Element, node => tra ve element
+}
+
+//9 tim x trong L
+Position locate(ElementType X, List L){
+	Position P=L;
+	int Found = 0;
+	while(P->Next!=NULL && !Found)
+	  if(P->Next->Element==X) Found =1; //value tai P = value can tim, return 1
+	  else P=P->Next;
+	  return P; //if P->Next = NULL => endList
+}
+
+//9.1
+Position locate(ElementType X, List L){ //cach 2: sd cac Ptoan Ds
+    Position P = first(L); //sdung bien khi kq khog thay doi khi thuc hien cac ctrinh con
+    Position E = end(L);
+    int Found = 0;
+	while(P!=E && !Found) //sdung P!=end(L) cung dc nhung lau hon
+	   if(retrieve(P,L) ==X) Found =1;
+	   else P = next(P,L);
+	return P; // ket thuc khi 1 trong 2 dkien xra 
+}
+
+//10 xen x, vtri P, L //page 49
+void insertList(ElementType X, Position P, List *pL){
+	Position P;
+	T = (struct Node*)malloc(sizeof(struct Node*));
+	T->Element = X;
+	P->Next=T;
+} //O(1)
+
+void insertList(ElementType X, Position P, List *L){ //*L nhan su thay doi //9
+	if(L->Last ==Maxlength)
+	  printf("Danh sach day!\n");
+	else if(P<1 || P>L->Last+1);
+	  printf("Vi tri khong hop le!\n");
+	else {// vtri hop le 
+		Position Q; // vtri Q
+		for(Q=L->Last; Q>=P; Q--) //Q-- tra 1 vtri
+		 L->Elements[Q] = L->Elements[Q-1];// value ptu sau = value ptu truoc // Last thay Last -1 va...
+		L->Last++;
+		L->Elements[P-1]=X; //xen
+	}
+ } //O(n) doi ptu ra sau
+
+//11 xoa x, p,L
+void deleteList(Position P, List *pL){
+	Position Temp;
+	  Temp = P->Next;
+	P->Next = Temp->Next; 
+	   freeTemp();
+} //O(1)
+ 
+ //11.1
+void DeleteList(Position P, List *L){ //10
+	if(L->Last == 0)
+	   printf("Danh sach rong!\n");
+	else if(P<1 || P>L->Last) 
+	   printf("Vi tri khong hop le!");
+	  else{
+	  	Position P;
+		  for(Q=P; Q<=Last-1; Q++)
+		    L->Elements[Q-1] = L->Elements[Q]; //value truoc = value sau
+			L->Last--; 
+	  } 
+} //O(n)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

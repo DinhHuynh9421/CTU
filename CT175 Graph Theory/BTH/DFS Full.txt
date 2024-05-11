@@ -1,0 +1,166 @@
+#include <stdio.h>
+#define MAX_Length 20
+
+typedef struct 
+{
+    /* data */
+    int u, v; // u = dinh 1, v = dinh 2
+}Edge;
+
+typedef struct 
+{
+    /* data */
+    int n, m; // n = so dinh, m = so canh
+    Edge data[MAX_Length]; // e = tap hop cac canh
+}Graph;
+
+typedef struct 
+{
+    int data[MAX_Length];
+    int size;
+}List;
+
+void makeNull(List *L){
+    L->size = 0;
+}
+int elementAt(List *L, int x){
+    return L->data[x];
+}
+void pushList(List *L, int x){
+    L->data[L->size] = x;
+    L->size++;
+}
+
+void initGraph(Graph *G, int n){
+    G->n = n;
+    G->m = 0;
+    printf("Do thi G duoc khoi tao voi so dinh n = %d va so canh m = %d\n", G->n, G->m);
+}
+
+void addEdge(Graph *G, int u, int v){
+    int i;
+    for(i = 0; i<G->m; i++){
+        if ((G->data[i].u == u && G->data[i].v == v) || (G->data[i].u == v && G->data[i].v == u))
+        {
+            printf("Canh da co trong do thi!");
+            return;
+        }
+    }
+    G->data[G->m].u = u;
+    G->data[G->m].v = v;
+    G->m++;
+    printf("Do thi da them vao canh %d %d\n", G->data[G->m-1].u, G->data[G->m-1].v);
+} 
+int adjacent(Graph *G, int u, int v){
+    int i;
+    for(i = 0; i<=G->m; i++){
+        if ((G->data[i].u == u && G->data[i].v == v) || (G->data[i].v == u && G->data[i].u == v))
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void degree(Graph *G, int x){
+    int i, count = 0;
+    for(i = 0; i<=G->m; i++){
+        if (adjacent(G, x, i))
+        {
+            count++;
+        }
+    }
+    printf("Bac cua canh %d la: %d\n", x, count);
+}
+
+List neighbors(Graph *G, int x){
+    List listVertex;
+    makeNull(&listVertex);
+    int i;
+    for(i = 1; i<=G->n; i++){
+        if (adjacent(G, x, i) == 1)
+        {
+            pushList(&listVertex, i);
+        }
+    }
+    return listVertex;
+}
+//khai b�o Stack
+#define MAX_ELEMENTS 100
+typedef struct {
+	int data [MAX_ELEMENTS];
+	int size;
+}Stack;
+void make_null_stack(Stack *S){
+	S->size=0;
+}
+void push(Stack *S, int x){
+	S->data[S->size] = x;
+	S->size++;
+}
+int top (Stack *S){
+	return S->data[S->size-1];
+}
+void pop(Stack *S){
+	 S->size--;
+}
+int empty(Stack *S){
+	return S->size == 0;
+}
+/* Duyet do thi theo chieu sau */
+void depth_first_search(Graph* G, int x,int a[MAX_ELEMENTS]) {
+	Stack L;
+	int mark[MAX_ELEMENTS];
+	make_null_stack(&L);
+	int j;
+	for (j = 1; j <= G->n; j++)
+	mark[j] = 0;
+	push(&L, x);
+	printf("Duyet DFS:");
+	while (!empty(&L)) {
+		int x = top(&L); pop(&L);
+		if (mark[x] != 0)
+			continue;
+		printf(" %d", x);
+		mark[x] = 1;
+		List list = neighbors(G, x);
+		for (j = 0; j < list.size; j++) {
+			int y = elementAt(&list, j);
+			push(&L, y);
+			a[x]=1;
+		}
+	}
+	printf("\n");
+}
+
+int main(int argc, char const *argv[])
+{
+    freopen("dothi.txt", "r", stdin);
+    int n, m, u, v, i, j;
+    int a[MAX_ELEMENTS];
+    scanf("%d%d", &n, &m);
+    Graph G;
+    initGraph(&G, n);
+    for(i = 1; i<=m; i++){
+        scanf("%d%d", &u, &v);
+        addEdge(&G, u, v);
+    }
+    for(i = 1; i<=n; i++){
+        degree(&G, i);
+    }
+    for(i = 1; i<=n; i++){
+        List l = neighbors(&G, i);
+        printf("neighbor(%d): ", i);
+        for(j = 0; j<l.size; j++){
+            printf("%d ", elementAt(&l, j));
+        }
+        printf("\n");
+    } 
+	for (j = 1; j <= G.n; j++)
+		a[j] = 0;  
+	for (j = 1; j <= G.n; j++){
+		if (a[j] == 0)
+			depth_first_search(&G, j,a);
+	}	
+    return 0;
+}

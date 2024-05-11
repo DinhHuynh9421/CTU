@@ -1,0 +1,204 @@
+Chương trình đào tạo (CTĐT) của một ngành là một danh sách các học phần mà sinh viên cần phải hoàn thành để được tốt nghiệp. Trong một CTĐT, quan hệ tiên quyết giữa các học phần là quan trọng nhất, đảm bảo tính hợp lý về mặt thứ tự của các khối kiến thức phải tích luỹ. Học phần tiên quyết là học phần phải được học trước học phần khác. Mỗi học phần có thể có nhiều học phần tiên quyết hoặc cũng có thể không có học phần tiên quyết nào.
+
+Để đơn giản vấn đề ta giả sử CTĐT gồm n học phần được đánh số 1, 2, ..., n. Một CTĐT được xem là hợp lệ nếu không tồn tại một dãy các học phần u1, u2, ..., uk (k >= 1) sao cho u1 là tiên quyết của u2, u2 là tiên quyết của u3, ..., uk-1là tiên quyết của uk và uk là tiên quyết của u1.
+
+Bài toán đặt ra là làm thế nào để kiểm tra một CTĐT đào tạo bất kỳ có hợp hệ hay không. Hãy viết chương trình đọc vào danh sách các cặp học phần có quan hệ tiên quyết và kiểm tra tính hợp lệ của CTĐT.
+
+Đầu vào (Input):
+
+Dữ liệu đầu vào được nhập từ bàn phím với định dạng:
+
+- Dòng đầu tiên chứa 2 số nguyên n và m, tương ứng là số học phần và số cặp học phần có quan hệ tiên quyết.
+
+- m dòng tiếp theo mỗi dòng chứa 2 số nguyên x, y nói rằng học phần x là học phần tiên quyết của học phần y.
+
+Đầu ra (Output):
+
+In ra màn hình HOP LE nếu CTĐT hợp lệ, ngược lại in ra KHONG
+
+Xem thêm ví dụ bên dưới.
+
+Chú ý:
+
+Để chạy thử chương trình, bạn nên tạo một tập tin ctdt.txt chứa đồ thị cần kiểm tra.
+Thêm dòng freopen("dt.txt", "r", stdin); vào ngay sau hàm main(). Khi nộp bài, nhớ gỡ bỏ dòng này ra.
+Có thể sử dụng đoạn chương trình đọc dữ liệu mẫu sau đây:
+	freopen("ctdt.txt", "r", stdin); //Khi nộp bài nhớ bỏ dòng này.
+	Graph G;
+	int n, m, u, v, e;
+	scanf("%d%d", &n, &m);
+	init_graph(&G, n);
+	
+	for (e = 0; e < m; e++) {
+		scanf("%d%d", &u, &v);
+		//Thêm u, v vào đồ thị
+	}
+
+
+For example:
+
+Input	Result
+3 2  
+1 3
+2 3
+HOP LE
+7 9
+1 2
+1 3
+1 4
+2 3
+2 6
+3 5
+3 7
+4 5
+5 7
+HOP LE
+7 9
+1 2
+1 3
+2 4
+2 5
+2 6
+3 5
+3 6
+4 7
+5 7
+HOP LE
+3 3
+1 2
+2 3
+3 1
+KHONG
+4 3
+1 2
+2 3
+2 4
+HOP LE
+
+#include <stdio.h>
+#define length 100
+typedef struct {
+    int data[length];
+    int front, rear;
+}Queue;
+
+void makenull_Queue(Queue *Q) {
+    Q->front=-1;
+    Q->rear=-1;
+}
+
+int empty(Queue *Q) {
+    return Q->front==-1;
+}
+
+int front(Queue *Q) {
+    return Q->data[Q->front];
+}
+
+void enQueue(Queue *Q, int x) {
+    if (Q->rear-Q->front+1==length)
+        return;
+    if (empty(Q))
+        Q->front++;
+    Q->rear++;
+    Q->data[Q->rear]=x;
+}
+
+void deQueue(Queue *Q) {
+    if (empty(Q))
+        return;
+    Q->front++;
+    if (Q->front>Q->rear)
+        makenull_Queue(Q);
+}
+
+typedef struct {
+    int data[length];
+    int size;
+}List;
+
+void makenull_List(List *L) {
+    L->size=0;
+}
+
+int element_at(List *L, int i) {
+    return L->data[i-1];
+}
+
+void push_back(List *L, int x) {
+    L->data[L->size]=x;
+    L->size++;
+}
+
+#define MAX_N 100
+typedef struct {
+    int A[MAX_N][MAX_N];
+    int n, m;
+}Graph;
+
+void init_graph(Graph *G, int n) {
+    G->n=n;
+    G->m=0;
+    int u, v;
+    for (u=1;u<=n;u++)
+        for (v=1;v<=n;v++)
+            G->A[u][v]=0;
+}
+
+void add_edge(Graph *G, int u, int v) {
+    G->A[u][v]=1;
+    G->m++;
+}
+
+void topo_sort(Graph *G, List *L) {
+    int u, v, d[MAX_N];
+    for (u=1;u<=G->n;u++) {
+        d[u] = 0;
+        for (v=1;v<=G->n;v++)
+            if (G->A[v][u]>0)
+                d[u]++;
+    }
+    
+    Queue Q;
+    makenull_Queue(&Q);
+    
+    for (u=1;u<=G->n;u++)
+        if (d[u] == 0)
+            enQueue(&Q, u);
+            
+    makenull_List(L);
+    
+    while (!empty(&Q)) {
+        u = front(&Q); deQueue(&Q);
+        push_back(L, u);
+        
+        for (v=1;v<=G->n;v++)
+            if (G->A[u][v]>0) {
+                d[v]--;
+                if (d[v] == 0)
+                    enQueue(&Q, v);
+            }
+    }
+}
+
+int main() {
+    Graph G;
+	int n, m, u, v, e;
+	scanf("%d%d", &n, &m);
+	init_graph(&G, n);
+	
+	for (e = 0; e < m; e++) {
+		scanf("%d%d", &u, &v);
+		add_edge(&G, u, v);
+	}
+	
+	List L;
+	topo_sort(&G, &L);
+	
+	if (L.size==G.n)
+	    printf("HOP LE");
+	else
+	    printf("KHONG");
+	return 0;
+}
+

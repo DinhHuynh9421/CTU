@@ -1,0 +1,51 @@
+void giao(List A, List B, List *C){
+	Position P = first(A), E1 = endList(A);
+	E2 = endList(B);
+	ElementType X;
+	makenullList(C);
+	//xet all ptu thuoc A
+	while(P!=E1){
+		X = retrieve(P,A);
+		if(local(X,B) != E2)// X thuoc B
+		  insertList(X, endList(*C), C);
+		P = next(P,A);
+	}
+}
+
+int main(){
+	List A, B, C;//khai bao 3 tap hop la 3List
+	Nhap(&A);
+	Nhap(&B);
+	Giao(A, B, &C);
+	In(A);
+	In(B);
+	In(C);
+	return 0;
+}
+
+//btap else khac
+
+#include "AListLib.c"
+
+void Nhap(List *pL){
+	int n, i;
+	ElementType X;
+	scanf("%d", &n);
+	for(i=1; i<=n; i++){
+		scanf("%d", &X);
+		if(locate(X, *pL)== endList(*pL))
+		  insertList(X,endList(*pL), pL);
+		  
+	}
+}
+
+void In(List L){
+	Position P = first(L), E = endList(L);
+	while(P!=E){
+		printf("%d", retrieve(P,L));
+		P = next(P, L);
+		
+	}
+	printf("\n");
+}
+

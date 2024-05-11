@@ -1,0 +1,71 @@
+#include<stdio.h>
+#define MAX_N 100
+typedef struct{
+	int u,v,w;
+}Edge;
+typedef struct{
+	Edge edges[MAX_N];
+	int n,m;
+}Graph;
+void init_graph(Graph *G, int n){
+	G->n=n;
+	G->m=0;
+}
+void add_edge(Graph *G, int u ,int v, int w){
+	G->edges[G->m].u=u;
+	G->edges[G->m].v=v;
+	G->edges[G->m].w=w;
+	G->m++;
+}
+int parent[MAX_N];
+
+int findRoot(int u){
+	if(parent[u]==u)
+	return u;
+	else return findRoot(parent[u]);
+}
+int Kruskal(Graph *G,Graph *T){
+	int u,v,w,e;
+	for(u=0;u<G->m;u++)
+	for(v=u+1;v<G->m;v++)
+	if(G->edges[u].w>G->edges[v].w){
+		Edge t=G->edges[u];
+		G->edges[u]=G->edges[v];
+		G->edges[v]=t;
+	}
+	init_graph(T,G->n);
+	for(u=1;u<=G->n;u++)
+	parent[u]=u;
+	int sum_w=0;
+	for(0;e<G->m;e++){
+		u=G->edges[e].u;
+		u=G->edges[e].v;
+		u=G->edges[e].w;
+		int root_u=findRoot(u), root_v=findRoot(v);
+		if(root_u!=root_v){
+			add_edge(T,u,v,w);
+			parent[root_v]=root_u;
+			sum_w+=w;
+		}
+	}
+	return sum_w;
+}
+int main(){
+	Graph G,T;
+	int n,m,u,v,w,e;
+	FILE *f=fopen("Kruscal_dt_130.txt","r");
+	fscanf(f,"%d%d",&n,&m);
+	init_graph(&G,n);
+	for(e=1;e<=m;e++){
+		fscanf(f,"%d%d",&u,&v,&w);
+		add_edge(&G,u,v,w);
+	}
+	int sum=Kruscal(&G,&T);
+	printf("Cay khong co trong so nho nhat la %d",sum);
+	for(e=0;e<T.m;e++)
+	printf("\n%d%d%d", T.edges[e].u,T.edges[e].v, T.edges[e].w);
+	fclose(f);
+	return 0;
+	
+}
+
